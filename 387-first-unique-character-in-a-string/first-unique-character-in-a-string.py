@@ -7,9 +7,9 @@ class Solution:
 
         print(letters)
 
-        for l in s:
-            if letters[l] == 1:
-                return s.index(l)
+        for i in range(len(s)):
+            if letters[s[i]] == 1:
+                return i
 
         return -1
 
