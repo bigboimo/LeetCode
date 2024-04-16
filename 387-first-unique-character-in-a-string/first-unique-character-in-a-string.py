@@ -1,5 +1,6 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
+        #Minor code cleaning using counter method
         letters = Counter(s)
 
         print(letters)
