@@ -3,23 +3,29 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+#Non-trivial approach
 class Solution:
-    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+    def reverse(self, head: ListNode) -> ListNode:
+        prev = None
         curr = head
-        arr = []
-
         while curr:
-            arr.append(curr.val)
-            curr = curr.next
+            next_temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_temp
+        return prev
 
-        l, r = 0, len(arr) - 1
-
-        while l <= r:
-
-            if arr[l] != arr[r]:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        slow = head
+        fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        rev = self.reverse(slow)
+        while rev:
+            if head.val != rev.val:
                 return False
-            
-            l += 1
-            r -= 1
-        
+            head = head.next
+            rev = rev.next
         return True
