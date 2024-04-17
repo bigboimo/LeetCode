@@ -5,8 +5,7 @@ class Solution:
 
         while num < n:
             num = 3 ** powr
-            print(num)
-
+            
             if num == n:
                 return True
             
