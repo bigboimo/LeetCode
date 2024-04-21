@@ -25,10 +25,11 @@ class Solution:
         
         rev = reverse(slow)
 
+        #Compare halves
         while rev:
             if head.val != rev.val:
                 return False
-            head = head.next
             rev = rev.next
+            head = head.next
         return True
 
