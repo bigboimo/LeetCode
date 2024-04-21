@@ -24,18 +24,15 @@ class Solution:
 
          
 
-        while list1:
+        if list1:
             res.next = list1
-            res = list1
-            list1 = list1.next
-
-        while list2:
+          
+        if list2:
             res.next = list2
-            res = list2
-            list2 = list2.next
+           
 
         print(dummy)
-        
+
         return dummy.next
 
         
