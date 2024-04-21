@@ -1,14 +1,9 @@
 class Solution:
     def firstUniqChar(self, s: str) -> int:
-        #Minor code cleaning using counter method
-        letters = Counter(s)
-
-        print(letters)
+        unique = Counter(s)
 
         for i in range(len(s)):
-            if letters[s[i]] == 1:
+            if unique[s[i]] == 1:
                 return i
-
-        return -1
-
         
+        return -1
