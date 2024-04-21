@@ -32,4 +32,3 @@ class Solution:
             rev = rev.next
             head = head.next
         return True
-
