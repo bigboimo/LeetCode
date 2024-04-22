@@ -3,15 +3,16 @@ class Solution:
         l, r = 0, x
         res = 0
 
-        while l<=r:
-            mid = l + (r - l)//2
+        while l <= r:
+            mid = l + (r-l)//2
+            print(mid)
+            print(l, r)
 
-            if mid*mid < x:
+            if mid * mid < x:
                 res = mid
                 l = mid + 1
-            elif mid*mid > x:
+            elif mid * mid > x:
                 r = mid - 1
             else: 
                 return mid
-
         return res
