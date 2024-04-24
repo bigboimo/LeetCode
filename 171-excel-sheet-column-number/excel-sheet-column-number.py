@@ -5,7 +5,7 @@ class Solution:
         res = 0
 
         for i in range(len(strn)):
-            curr = ord(strn[i]) - 64
+            curr = ord(strn[i]) - ord('A') + 1
             res += curr * (26**i)
             
         return res
