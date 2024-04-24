@@ -1,19 +1,17 @@
 class Solution:
-    def tribonacci(self, n: int) -> int:
-        #DP memoized solution 
-        memo = {}
-
-        def helper(n):
-            if n in memo:
-                return memo[n]
-
-            if n == 0:
-                return 0
-            elif n == 1 or n == 2: 
-                return 1
-            else:
-                result = helper(n - 1) + helper(n - 2) + helper(n - 3)
-                memo[n] = result 
-                return  result 
+    #Optimal time and space solution
+       def tribonacci(self, n: int) -> int:
+        if n == 0:
+            return 0
+        elif n == 1 or n == 2:
+            return 1
         
-        return helper(n)
+        a, b, c = 0, 1, 1
+        
+        for i in range(3, n + 1):
+            next_trib = a + b + c
+            a = b
+            b = c
+            c = next_trib
+        
+        return c
