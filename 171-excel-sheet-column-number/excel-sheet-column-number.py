@@ -1,5 +1,6 @@
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
+        #O(1) space optimization
         strn = columnTitle[::-1]
         res = 0
 
