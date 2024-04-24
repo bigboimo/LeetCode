@@ -1,42 +1,41 @@
 class Solution:
-    
     def sortArray(self, nums: List[int]) -> List[int]:
-        #Mergesort nlogn time and n space
-
-        def merge(arr, L, M, R):
-            left, right = arr[L:M+1], arr[M+1: R+1]
-            i, j, k = L, 0, 0
-
-            while j < len(left) and k < len(right):
-                if left[j] <= right[k]:
-                    arr[i] = left[j]
-                    j += 1
-                else:
-                    arr[i] = right[k]
-                    k += 1
-                i += 1
-            
-            while j < len(left):
-                arr[i] = left[j]
-                j += 1
-                i += 1
-
-            while j < len(left):
-                arr[i] = right[l]
-                l += 1
-                i += 1
-            
-            
-
-
-        def mergeSort(arr, l, r):
-            if l == r: 
+        
+        def mergeSort(arr, start, end):
+            if start >= end:
                 return arr
-
-            m = (l+r) // 2
-            mergeSort(arr, l, m)
-            mergeSort(arr, m + 1, r)
-            merge(arr, l, m, r)
+            
+            mid = (start + end)//2
+            #First half of array split
+            mergeSort(arr, start, mid)
+            #Second half of array split
+            mergeSort(arr, mid + 1, end)
+            #Merge the subarrays
+            merge(arr, start, mid, end)
+            #Return the sorted array after the merging is done
             return arr
+        
+        def merge(arr, start, mid, end):
+            left, right = arr[start : mid + 1], arr[mid + 1 : end + 1]
+            l, r, k = 0, 0 , start
 
+            while l < len(left) and r < len(right):
+                if left[l] <= right[r]:
+                    arr[k] = left[l]
+                    l += 1
+                else:
+                    arr[k] = right[r]
+                    r += 1
+                k += 1
+            
+            while l < len(left):
+                arr[k] = left[l]
+                l += 1
+                k += 1
+            
+            while r < len(right):
+                arr[k] = right[r]
+                r += 1
+                k += 1
+            
         return mergeSort(nums, 0, len(nums))
