@@ -1,10 +1,10 @@
 class Solution:
     def titleToNumber(self, columnTitle: str) -> int:
-        #O(n) time complexity 
-        ans, pos = 0, 0
-        for letter in reversed(columnTitle):
-            digit = ord(letter)-64
-            ans += digit * 26**pos
-            pos += 1
+        strn = columnTitle[::-1]
+        res = 0
+
+        for i in range(len(strn)):
+            curr = ord(strn[i]) - 64
+            res += curr * (26**i)
             
-        return ans
+        return res
