@@ -2,8 +2,8 @@ class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
         dup = set()
 
-        for i in nums:
-            if i in dup:
+        for n in nums:
+            if n in dup:
                 return True
-            dup.add(i)
+            dup.add(n)
         return False
