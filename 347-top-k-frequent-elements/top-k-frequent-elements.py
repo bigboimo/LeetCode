@@ -1,7 +1,18 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         counter = Counter(nums)
-        print(counter)
-        print(counter.most_common(k))
-        # Extracting the k most common elements and returning only their values
-        return [item for item, _ in counter.most_common(k)]
+        freq = [[] for i in range(len(nums) + 1)]
+
+        for n, c in counter.items():
+            freq[c].append(n)
+
+        print(freq)
+
+        ret = []
+
+        for i in reversed(range(len(freq))):
+            for n in freq[i]:
+                print(freq[i])
+                ret.append(n)
+                if len(ret) >= k:
+                    return ret
