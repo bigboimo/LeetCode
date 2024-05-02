@@ -3,7 +3,13 @@ class Solution:
         hashmap = defaultdict(list)
 
         for i in range(len(strs)):
-            hashmap[tuple(sorted(strs[i]))].append(strs[i])
+            res = [0] * 26
+            
+            for l in strs[i]:
+                count = ord(l) - ord('a')
+                res[count] += 1
+
+            hashmap[tuple(res)].append(strs[i])
 
 
         print(hashmap.values())
