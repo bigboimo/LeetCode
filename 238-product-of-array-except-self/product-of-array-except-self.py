@@ -15,5 +15,4 @@ class Solution:
             post = post * nums[i]
         
         print(res)
-
         return(res)
