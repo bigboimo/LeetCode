@@ -9,6 +9,7 @@ class Solution:
         s,f = dummy, dummy
         i = 0
 
+        #One pass solution with O(n) time complexity 
         while f and f.next:
             f = f.next
 
@@ -20,7 +21,7 @@ class Solution:
 
         print(s)
         print(f)
-        
+
         s.next = s.next.next
 
 
