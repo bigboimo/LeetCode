@@ -16,9 +16,11 @@ class Solution:
                 s = s.next
 
             i += 1
+        
+
         print(s)
         print(f)
-
+        
         s.next = s.next.next
 
 
