@@ -6,22 +6,22 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        self.isBalanced = True
+        self.isChanged = True
 
         def dfs(root):
             if not root:
-                return [True, 0]
-            
-            #Recursively call left and right subtrees
-            left, right = dfs(root.left), dfs(root.right)
-            #Boolean to check if every subtree hold True for balanced and the height diff is <= 1
-            balanced = right[0] and left[0] and abs(left[1] - right[1]) <= 1
-            
-            return [balanced, max(left[1], right[1]) + 1]
-        
-        return dfs(root)[0]
+                return 0
 
-       
+            left = dfs(root.left)
+            right = dfs(root.right)
 
-            
+            self.isBalanced = abs(left - right) <= 1
 
-            
+            if not self.isBalanced:
+                self.isChanged = False
+
+            return 1 + max(right, left)
+
+        dfs(root)
+        return self.isBalanced and self.isChanged
