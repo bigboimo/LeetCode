@@ -16,9 +16,9 @@ class Solution:
             left = dfs(root.left, arr)
             right = dfs(root.right, arr)
 
-            #Add values of left and right subtree 
-            arr.append(root.val)
+            #Add values of root, left, and right subtree 
             arr.append(left)
+            arr.append(root.val)
             arr.append(right)
 
             return root.val
