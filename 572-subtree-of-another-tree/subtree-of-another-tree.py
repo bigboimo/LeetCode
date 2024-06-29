@@ -22,8 +22,8 @@ class Solution:
             if not root:
                 return False
 
-            #Left and right subtrees
-            if isSame(root, subRoot):
+            #Left and right subtrees (Minor optimization)
+            if root.val == subRoot.val and isSame(root, subRoot):
                 return True
 
             return dfs(root.left) or dfs(root.right)
