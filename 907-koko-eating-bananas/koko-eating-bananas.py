@@ -6,13 +6,11 @@ class Solution:
 
         while l<=r: 
             mid = (l+r)//2
-            print(l,mid ,r)
             timeTaken = 0
 
             for n in piles:
                 timeTaken += math.ceil(n/mid)
             
-            print(timeTaken)
             if timeTaken <= h:
                 res = mid
                 r = mid - 1
