@@ -1,11 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        sums = {}
+        tracker = {}
 
         for i in range(len(nums)):
+            res = target - nums[i]
 
-            if nums[i] in sums:
-                return [sums[nums[i]], i]
-                
-            key = target - nums[i]
-            sums[key] = i
+            if nums[i] in tracker:
+                return [tracker[nums[i]] , i] 
+
+            tracker[res] = i
