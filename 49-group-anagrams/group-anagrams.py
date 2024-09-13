@@ -1,17 +1,27 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        hashmap = defaultdict(list)
+        newList = strs
+        counter = defaultdict(list)
 
-        for i in range(len(strs)):
-            res = [0] * 26
-            
-            for l in strs[i]:
-                count = ord(l) - ord('a')
-                res[count] += 1
+        for i in range(len(newList)):
+            counter[tuple(sorted(newList[i]))].append(i)
 
-            hashmap[tuple(res)].append(strs[i])
+        print(counter)
 
+        res = counter.values()
+        print(res)
+        ret = []
+        
+        for nums in res:
+            adds = []
+            for n in nums:
+                adds.append(strs[n])
+            ret.append(adds)
 
-        print(hashmap.values())
+        print(ret)
+        return ret
 
-        return hashmap.values()
+        
+
+      
+
