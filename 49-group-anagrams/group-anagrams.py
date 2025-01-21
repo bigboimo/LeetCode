@@ -1,8 +1,8 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        counter = defaultdict(list)
+        anagrams = defaultdict(list)
+        for i in range(len(strs)):
+            anagrams[str(sorted(strs[i]))].append(strs[i])
 
-        for s in strs: 
-            counter[tuple(sorted(s))].append(s)
+        return list(anagrams.values())
 
-        return counter.values()
