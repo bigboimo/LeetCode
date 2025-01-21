@@ -1,13 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        sums = {}
+        tracker = {}
 
-        for i in range(len(nums)):
+        for i in range(len(nums)): 
             val = target - nums[i]
 
-            if nums[i] in sums:
-                return [sums[nums[i]] , i]
+            if nums[i] in tracker: 
+                return [ tracker[nums[i]] , i]
 
-            sums[val] = i
-
-            
+            tracker[val] = i
