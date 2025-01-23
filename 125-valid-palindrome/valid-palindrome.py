@@ -1,9 +1,10 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        #O(n) time complexity
-        newStr = [x.lower() for x in s if x.isalnum()]
+        newStr = ""
 
+        for l in s: 
+            if l.isalnum():
+                newStr +=l.lower()
         print(newStr)
         print(newStr[::-1])
-
         return newStr == newStr[::-1]
