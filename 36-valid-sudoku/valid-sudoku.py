@@ -1,25 +1,28 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        hashmap = defaultdict(list)
-        hashRow = defaultdict(list)
-        hashCol = defaultdict(list)
+        rowVals = defaultdict(list)
+        colVals = defaultdict(list)
+        boxVals = defaultdict(list)
 
         for row in range(len(board)):
-            for col in range(len(board)):
-                val = board[row][col]
+            for col in range(len(board[row])):
+                #print(board[row][col])
 
-                if val == ".":
-                    continue
-
-                if val in hashCol[col] or val in hashRow[row] or val in hashmap[row//3, col//3]:
-                    print(hashmap)
-                    print(hashCol)
-                    print(hashRow)
+                if board[row][col] in rowVals[row] or board[row][col] in colVals[col] or board[row][col] in boxVals[row//3, col//3]:
                     return False
 
-                hashCol[col].append(val)
-                hashRow[row].append(val)
-                hashmap[row//3, col//3].append(val)
+                
+                if board[row][col] != '.':
+                    rowVals[row].append(board[row][col])
+                    colVals[col].append(board[row][col])
+                    boxVals[row//3, col//3].append(board[row][col])
+
+
+            #print(rowVals)
+
+        print(rowVals)
+        print(colVals)
+        print(boxVals)
+
 
         return True
-
