@@ -1,28 +1,26 @@
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
-        stack = []
+        numStack = []
 
-        for t in tokens:
+        for token in tokens:
+            if token in "+-*/":
+                # Pop two numbers from the stack
+                b = numStack.pop()
+                a = numStack.pop()
 
-            if t == '+':
-                curr = stack.pop()
-                prev = stack.pop()
-                stack.append(prev + curr) 
-            elif t == '-':
-                curr = stack.pop()
-                prev = stack.pop()
-                stack.append(prev - curr) 
-            elif t == '*':
-                curr = stack.pop()
-                prev = stack.pop()
-                stack.append(prev * curr) 
-            elif t == '/':
-                curr = stack.pop()
-                prev = stack.pop()
-                stack.append(int(prev/curr))
+                # Perform the operation
+                if token == "+":
+                    numStack.append(a + b)
+                elif token == "-":
+                    numStack.append(a - b)
+                elif token == "*":
+                    numStack.append(a * b)
+                elif token == "/":
+                    # Correctly handle truncation towards zero
+                    numStack.append(int(a / b))
             else:
-                stack.append(int(t))
+                # Push numbers onto the stack
+                numStack.append(int(token))
 
-        print('outside loop')
-        print(stack)
-        return stack[-1]
+        # The last element in the stack is the result
+        return numStack.pop()
