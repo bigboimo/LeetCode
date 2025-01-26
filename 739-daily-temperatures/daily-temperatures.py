@@ -3,12 +3,12 @@ class Solution:
         res = [0] * len(temperatures)
         stack = []
 
-        #Small optimization using index only instead of storing both temp and idx
         for i in range(len(temperatures)):
-            while stack and temperatures[i] > temperatures[stack[-1]]:
-                currIdx = stack.pop()
-                res[currIdx] = i - currIdx
+            
+            while stack and stack[-1][0] < temperatures[i]:
+                res[stack[-1][1]] = (i - stack[-1][1])
+                stack.pop()
 
-            stack.append(i)
-
+            stack.append([temperatures[i], i])
+      
         return res
