@@ -1,16 +1,24 @@
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        hashPair = defaultdict(int)
+        res = 0
+        stack = []
+        hashPair = {}
 
+        #Dictionary to pair the speeds
         for i in range(len(position)):
             hashPair[position[i]] = speed[i]
-        
-        position = sorted(position)
-        stack = []
-        stack.append((target - position[-1]) / hashPair.get(position[-1]))
 
-        for i in reversed(range(len(position))):
-            if stack and stack[-1] < (target - position[i]) / hashPair.get(position[i]):
-                stack.append( (target - position[i]) / hashPair.get(position[i]) )
+        position = sorted(position)
+
+        #Times to get there for a fleet
+        for i in range(len(position)):
+
+            time = (target - position[i])/hashPair[position[i]]
+
+            while stack and stack[-1] <= time:
+                stack.pop()
+
+            
+            stack.append(time)
 
         return len(stack)
