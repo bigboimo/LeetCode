@@ -4,7 +4,7 @@ class Solution:
         stack = []
         hashPair = {}
 
-        #Dictionary to pair the speeds
+        #Dictionary to pair the speeds before sorting
         for i in range(len(position)):
             hashPair[position[i]] = speed[i]
 
