@@ -4,7 +4,7 @@ class Solution:
         res = r
 
         while l <= r:
-            mid = int((l+r)/2)
+            mid = (l+r)//2
             
             totalTime = 0
             for i in range(len(piles)):
