@@ -8,7 +8,7 @@ class Solution:
 
         res = -1
 
-        #Find minimum value in logn
+        #Find minimum value in logn which finds the pivot point
         while l <= r:
             mid = (l+r) // 2
             
@@ -25,8 +25,7 @@ class Solution:
         print(minVal)
 
         #Typical binary search
-
-        if nums[index] <= target <= nums[-1]:
+        if minVal <= target <= nums[-1]:
             l, r = index, len(nums) - 1
         else:
             l, r = 0, index - 1
