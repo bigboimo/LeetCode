@@ -4,24 +4,14 @@ class Solution:
         minVal = nums[l] 
 
         while l <= r:
+            
             mid = (l+r)//2
             minVal = min(minVal, nums[mid])
-            print(nums[l], nums[mid], nums[r], minVal, 'first')
 
-
-            #Sorted region 
-            if nums[l] < nums[r]:
-                return nums[l]
-
-
-            #Unsorted region
-            else:
-                print(nums[l], nums[mid], nums[r])
-                #Compare if array is decreasing or increasing
-                if nums[mid] >= nums[l]:
-                    l = mid + 1
-                else:
-                    r = mid
-            
+            #This statement verifies that we're going in increasing order and mid is more then r meaning we're in the unsorted portion
+            if nums[mid] >= nums[l] and nums[mid] > nums[r]:
+                l = mid + 1
+            else: 
+                r = mid - 1
 
         return minVal
