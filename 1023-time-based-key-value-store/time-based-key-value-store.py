@@ -1,34 +1,32 @@
 class TimeMap:
 
     def __init__(self):
-        self.keyVals = defaultdict(list)
-        
+        self.keyData = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.keyVals[key].append([value, timestamp])
+        self.keyData[key].append([value, timestamp])
         
 
     def get(self, key: str, timestamp: int) -> str:
-        if key not in self.keyVals:
-            return ""
-
-        nums = self.keyVals[key]
+        nums = self.keyData[key]
         l, r = 0, len(nums) - 1
-        maxTimestamp = timestamp
-        resStr = ""
+        res = ""
 
+        #Binary search to find number in logn
         while l <= r:
-            mid = (l+r) // 2                
+            mid = (l+r)//2
+            currVal = nums[mid][1]
 
-            if nums[mid][1] <= timestamp:
-                resStr = nums[mid][0]
+            
+            if currVal <= timestamp:
+                res = nums[mid][0]
                 l = mid + 1
-            else:
+            elif currVal > timestamp:
                 r = mid - 1
-        return resStr   
+            else:
+                return nums[mid][0]
 
-
-        
+        return res
 
 
 # Your TimeMap object will be instantiated and called as such:
