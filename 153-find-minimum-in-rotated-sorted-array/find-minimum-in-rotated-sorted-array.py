@@ -6,7 +6,8 @@ class Solution:
         while l<= r:
             mid =(l+r)//2
 
-            res = min(nums[mid], res)
+            #res = min(nums[mid], res)
+            res = nums[mid]
             if nums[mid] >= nums[l] and nums[mid] > nums[r]:
                 l += 1
             else: 
