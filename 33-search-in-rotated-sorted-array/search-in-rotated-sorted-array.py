@@ -1,48 +1,36 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
+        pivot = l
+        res = -1
+
+        #Modified binary search to find pivot point (lowest number)
+        while l <= r:
+            mid = (l+r)//2
+
+            pivot = mid
+            if nums[mid] >= nums[l] and nums[mid] > nums[r]:
+                l += 1
+            else:
+                r -= 1
 
         l, r = 0, len(nums) - 1
 
-        minVal = nums[l]
-        index = 0
-
-        res = -1
-
-        #Find minimum value in logn which finds the pivot point
-        while l <= r:
-            mid = (l+r) // 2
-            
-            if nums[mid] < minVal:
-                minVal = nums[mid]
-                index = mid
-                
-            #Check if in sorted region or not
-            if nums[mid] >= nums[l] and nums[mid] > nums[r]:
-                l = mid + 1
-            else:
-                r = mid - 1
-
-        print(minVal)
-
-        #Typical binary search
-        if minVal <= target <= nums[-1]:
-            l, r = index, len(nums) - 1
-        else:
-            l, r = 0, index - 1
-
-
+        #Find our number based on target
+        if target >= nums[pivot] and target <= nums[-1]:
+            l = pivot
+        else: 
+            r = pivot - 1
+        
+        #Unmodified binary search implementation
         while l <= r:
             mid = (l+r)//2
-            print(nums[l], nums[mid], nums[r])
 
             if nums[mid] < target:
-                l = mid + 1
+                l += 1
             elif nums[mid] > target:
-                r = mid - 1
-            else: 
-                return mid
-        
+                r -= 1
+            else:
+                res = mid
+                break
         return res
-            
-
-
