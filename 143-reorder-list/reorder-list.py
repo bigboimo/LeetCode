@@ -3,40 +3,37 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
         """
         Do not return anything, modify head in-place instead.
         """
-        slow, fast = head, head 
+        if not head or not head.next:
+            return
 
-        #Find the middle point (slow) O(n)
+        # Step 1: Find the middle of the linked list
+        slow, fast = head, head
         while fast and fast.next:
-            slow = slow.next 
+            slow = slow.next
             fast = fast.next.next
 
-        prev, curr = None, slow
-        #Reverse the second half of the linked list o(n/2)
+        # Step 2: Reverse the second half of the list
+        prev, curr = None, slow.next
+        slow.next = None  # Disconnect the first and second halves
+
         while curr:
-            temp = curr.next 
+            temp = curr.next
             curr.next = prev
-            prev = curr 
+            prev = curr
             curr = temp
 
+        # Step 3: Merge the two halves
+        first, second = head, prev
+        while second:
+            temp1, temp2 = first.next, second.next
+            first.next = second
+            second.next = temp1
 
-        start, mid = head, slow
-        
-        res = head
-        #Connect the first half to the second reversed half
-        while prev and prev.next:
-            temp1 = head.next
-            temp2 = prev.next
-
-            head.next = prev
-            head = temp1
-
-            prev.next = head
-            prev = temp2
-        
-
-                        
+            first = temp1
+            second = temp2
