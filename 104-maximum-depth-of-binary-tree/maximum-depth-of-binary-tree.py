@@ -4,9 +4,12 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+maxes = [0, 0]
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-
-        return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+            
+        depth = 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
+        return depth
