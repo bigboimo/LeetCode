@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-
+        self.isBalanced = True
         def depth(root):
             if not root:
                 return 0
@@ -14,17 +14,18 @@ class Solution:
             left = depth(root.left)
             right = depth(root.right)
 
+            balanced = abs(left - right) <= 1
+            if not balanced:
+                self.isBalanced = False
+
             return max(left, right) + 1
 
 
         if not root:
             return True
         
-        left = depth(root.left)
-        right = depth(root.right)
-
-        balanced = abs(left - right) <= 1
-        return balanced and self.isBalanced(root.left) and self.isBalanced(root.right)
+        depth(root)
+        return self.isBalanced
 
        
         
